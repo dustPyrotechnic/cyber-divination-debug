@@ -56,7 +56,7 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'issues' && github.event.action != 'labeled') ||
       (github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'solve-it')
-    uses: dustPyrotechnic/agent-cycle-test/.github/workflows/reusable-agent-cycle.yml@v1
+    uses: dustPyrotechnic/agent-cycle-test/.github/workflows/reusable-agent-cycle.yml@15503571381d27f222731b7beb4c10c1d456d676
     with:
       issue_number: ${{ format('{0}', github.event.issue.number || github.event.client_payload.issue_number || inputs.issue_number) }}
       provider: ${{ github.event.client_payload.provider || inputs.provider || 'deepseek' }}
@@ -65,7 +65,7 @@ jobs:
       # Must match the @ref pinned in `uses:` above. A reusable workflow cannot
       # discover its own ref, so the engine .agent code is checked out at this ref.
       engine_repository: dustPyrotechnic/agent-cycle-test
-      engine_ref: v1
+      engine_ref: 15503571381d27f222731b7beb4c10c1d456d676
     secrets:
       DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
       MIMO_API_KEY: ${{ secrets.MIMO_API_KEY }}
