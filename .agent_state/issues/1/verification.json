@@ -1,0 +1,35 @@
+{
+  "status": "pass",
+  "summary": "All acceptance checks pass. SKILL.md now includes 互卦与体用 section with 生克 relationships, short conclusion expanded to 2-3 sentences, material-request length constraint removed, template restructured with 互卦/体用/六爻审之/依卦象所缺 framing, length limits increased (200-350/300-500), all four examples enriched, Solution Prohibition guardrail added, and README.md updated. Old phrases ('one or two sentences', '短断一句', standalone '请补') are fully removed. Only 2 files modified.",
+  "tests": [
+    "grep '互卦与体用' SKILL.md: found at line 100, section with derivation rules and 4 生克 relationships",
+    "grep 'two to three sentences' SKILL.md: found at line 123, confirmed rule change",
+    "grep 'must not exceed the length of the short conclusion' SKILL.md: 0 matches (exit 1), old constraint removed",
+    "grep 'one or two sentences' SKILL.md: 0 matches (exit 1), stale phrase removed",
+    "grep '短断一句' SKILL.md: 0 matches (exit 1), stale phrase removed",
+    "grep '互卦得' SKILL.md: 6 occurrences (template + reference + 4 examples)",
+    "grep '体卦为' SKILL.md: 7 occurrences (template + allowed phrase + reference + 4 examples)",
+    "grep '六爻审之' SKILL.md: 6 occurrences (template + allowed phrase + 4 examples)",
+    "grep '依卦象所缺，请补' SKILL.md: 6 occurrences (template + allowed phrase + 4 examples), all 6 '请补' matches are prefixed",
+    "grep 'GitHub-bot style: 200–350' SKILL.md: confirmed at line 219",
+    "grep 'Normal short comment: 300–500' SKILL.md: confirmed at line 220",
+    "grep 'expanded divination content' SKILL.md: confirmed Solution Prohibition guardrail at line 240",
+    "grep Forbidden Phrases: all 7 matches only in Forbidden Phrases listing section (lines 394-400)",
+    "git diff --stat: only README.md (+7/-2) and SKILL.md (+63/-26) modified"
+  ],
+  "acceptance_checks": [
+    "New 互卦与体用 section with derivation and 生克 instructions: pass - section at line 100, 体用生克 mentioned 6 times, all 4 生克 types listed",
+    "Short Conclusion Rule says 'two to three sentences': pass - line 123 confirms, 'one or two' fully removed",
+    "Material-request length constraint removed: pass - old constraint 0 matches, replaced with narrative-flow guidance",
+    "Template includes 互卦 and 体用 elements: pass - lines 201-212 include 互卦得, 体卦为/用卦为, 六爻审之, 依卦象所缺",
+    "Length limits increased to 200-350 / 300-500: pass - lines 219-220 confirm new limits",
+    "All four examples demonstrate richer format: pass - each example has 互卦得, 体卦为, 体用 label, 六爻审之, 依卦象所缺 framing",
+    "No forbidden phrases in new content: pass - all forbidden phrases only in listing section",
+    "Solution Prohibition guardrail for expanded content: pass - line 240 explicitly covers 互卦/体用/生克"
+  ],
+  "findings": [
+    "low: Example 4 line 338 has a Unicode quotation mark inconsistency — the opening quote of 突然不行 uses U+201D (RIGHT DOUBLE QUOTATION MARK) instead of expected U+201C (LEFT DOUBLE QUOTATION MARK). Cosmetic, does not affect function or readability.",
+    "info: No executable test suite exists in the repository; all verification is static content review. AI model behavior with the enriched 互卦/体用 content cannot be validated in this environment, as noted by both analyst and implementer.",
+    "info: All 6 '请补：' grep matches derive from '依卦象所缺，请补：' — no standalone '请补：' remains, confirming the old abrupt material-request pattern is fully replaced with closing divination language."
+  ]
+}

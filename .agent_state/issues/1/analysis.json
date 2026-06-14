@@ -1,0 +1,34 @@
+{
+  "status": "ready",
+  "task_type": "feature",
+  "summary": "The SKILL.md prompt constrains divination output too tightly (1-2 sentence conclusion, mechanical template, absence of 互卦/体用 analysis), making the fortune-telling frame feel perfunctory and causing the material request to feel jarringly out of character. The fix enriches the hexagram derivation with traditional Mei-Hua elements and restructures the template so the divination-to-material-request flow feels natural.",
+  "evidence": [
+    "SKILL.md line 104: short conclusion limited to 'one or two sentences' — too brief to establish authentic divination tone",
+    "SKILL.md lines 76-98: hexagram derivation only covers time→trigram mapping; no 互卦 (mutual hexagram) or 体用 (body/function) analysis — core Mei-Hua concepts are absent",
+    "SKILL.md line 111: 'material request must be one sentence and must not exceed the length of the short conclusion plus its reasoning' — constrains material request to be shorter than an already-too-short conclusion",
+    "SKILL.md lines 174-194: default template is a mechanical checklist with no narrative flow between divination and yao review",
+    "SKILL.md lines 196-201: length limits 150-250 chars (bot) and 200-350 chars (normal) are too tight for authentic divination content",
+    "SKILL.md is unchanged since initial commit (157451f); issue was filed by OWNER after testing the loaded skill",
+    "README.md describes the skill as 'Yi-Jing / Mei-Hua style hexagram reading' but the current spec omits core Mei-Hua elements"
+  ],
+  "root_cause_or_rationale": "The SKILL.md specification prioritizes brevity over authenticity. The hexagram derivation is a single-step symbolic mapping with no 互卦 or 体用 analysis — both defining features of Mei-Hua divination. The short conclusion is capped at 1-2 sentences and the material request is gated to be even shorter. The template presents yao evidence as a disconnected checklist. Together, these constraints produce divination that feels like a thin veneer rather than a genuine rhetorical frame, causing the abrupt '请补：...' material request to break immersion. The enhancement should add authentic Mei-Hua structural elements (互卦, 体用, 生克) and allow slightly expanded divination commentary so the material request reads as the natural concluding prescription of the reading.",
+  "implementation_plan": [
+    "In SKILL.md, after 'Time-Based Hexagram Derivation' section (line 98), add a new '互卦与体用 (Mutual Hexagram and Body/Function)' section that instructs: (a) derive 互卦 from the primary hexagram's lines 2-4 (lower mutual) and 3-5 (upper mutual) to represent the developing process; (b) designate 体卦 as the lower trigram (representing the user/question) and 用卦 as the upper trigram (representing the bug/matter); (c) note the 体用生克 relationship (体生用=effort drains, 用生体=clue emerges, 体克用=user can control, 用克体=bug dominates) as a symbolic lens for the short conclusion",
+    "In 'Short Conclusion Rule' section (line 105), change 'one or two sentences' to 'two to three sentences' and add guidance to optionally reference 体用生克 relationship and 互卦 insight. Remove the constraint on line 111 ('material request must not exceed the length of the short conclusion plus its reasoning') and replace with: 'The material request should be one concise sentence that flows naturally from the divination narrative — it is the prescription, not an afterthought.' Add example frames that demonstrate 体用 language: '体卦为X，用卦为Y，用克体，主此事非在我，多在外缘...'",
+    "In 'Length Limits' section (lines 197-200), increase GitHub-bot style from 150–250 to 200–350 characters and normal short comment from 200–350 to 300–500 characters, noting that the divination portion may expand but the material request remains one sentence",
+    "Restructure the 'Default Output Template' (lines 174-194) to: include 互卦 derivation line; include 体用 designation and 生克 note; reorder yao evidence review to flow narratively from the divination rather than as a bullet-like checklist; frame the material request with closing divination language (e.g., '依卦象所缺，请补：...') instead of standalone '请补：'",
+    "Update all four example outputs (lines 232-300) to demonstrate the richer format: add 互卦 to Example 1 (CAD setup → 水山蹇 互卦 火水未济), add 体用 analysis to each example, and rewrite material requests to flow from divination narrative",
+    "In 'Solution Prohibition' section around line 203-216, add a note that the expanded divination content is still symbolic framing and must not become a disguised root-cause analysis or technical troubleshooting guide"
+  ],
+  "validation_plan": [
+    "Read the modified SKILL.md and confirm: (a) new '互卦与体用' section exists with derivation and 生克 instructions; (b) 'Short Conclusion Rule' says 'two to three sentences' not 'one or two'; (c) constraint on material-request length is removed; (d) template includes 互卦 and 体用 elements; (e) length limits are increased to 200-350 / 300-500; (f) all four examples demonstrate richer format",
+    "Simulate by using the skill prompt with a minimal bug report (e.g., '点了没反应') and verify the mental-model output includes mutual hexagram reference, body/function designations, a 2-3 sentence conclusion, and a material request that reads as the natural endpoint of the divination narrative",
+    "Verify no forbidden phrases or solution-giving crept in during expansion (spot-check against 'Forbidden Phrases' and 'Solution Prohibition' lists)"
+  ],
+  "risks": [
+    "Issue is vague ('不够多和真实详细' — not enough and not real/detailed) without concrete specifications; the proposed 互卦/体用 additions are my interpretation of what makes Mei-Hua feel authentic — the OWNER may have a different vision",
+    "Adding 互卦 and 体用 increases skill complexity; an AI model may misinterpret or over-elaborate these concepts, producing bloated or incoherent divination instead of focused content",
+    "No test suite exists in the repository to validate skill output; quality depends entirely on prompt engineering with no automated regression checks",
+    "The balance between 'richer divination' and 'still primarily a quality gate, not actual fortune-telling' is delicate — over-expansion could make the hexagram the main event rather than the framing device"
+  ]
+}
