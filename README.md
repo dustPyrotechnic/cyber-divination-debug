@@ -25,9 +25,10 @@ When someone reports a bug with insufficient evidence, this skill helps resist t
 
 1. Maps the question time to a trigram.
 2. Builds a hexagram from time, scene, and error result.
-3. Gives a one- or two-sentence "short divination" (短断) that is explicitly unverified.
-4. Reviews the six-yao evidence map and lists the missing materials.
-5. Asks the user to provide logs, screenshots, environment, version, reproduction steps, etc.
+3. Derives the 互卦 (mutual hexagram) and 体用 (body/function) relationship to enrich the divination frame.
+4. Gives a two- to three-sentence "short divination" (短断) that is explicitly unverified.
+5. Reviews the six-yao evidence map and lists the missing materials.
+6. Asks the user to provide logs, screenshots, environment, version, reproduction steps, etc.
 
 ## What It Does NOT Do
 

@@ -1,0 +1,38 @@
+{
+  "status": "ready_for_verification",
+  "summary": "Enriched SKILL.md with authentic Mei-Hua divination elements: added 互卦 (mutual hexagram) and 体用 (body/function) analysis sections with 生克 relationship guidance; expanded short conclusion from 1-2 to 2-3 sentences; removed the constraint that material request must be shorter than the conclusion; increased length limits (200-350 for bot, 300-500 for normal); restructured template and all four examples with 互卦, 体用, 六爻审之 framing, and closing divination language (依卦象所缺，请补); added Solution Prohibition guardrail for expanded content; updated Allowed Phrases and README for consistency.",
+  "changes": [
+    "cyber-divination-debug/SKILL.md: Added 互卦与体用 section with derivation rules and 生克 relationships",
+    "cyber-divination-debug/SKILL.md: Short Conclusion Rule: changed 1-2 sentences to 2-3, added 体用 reference guidance, replaced material-request length constraint with narrative-flow guidance",
+    "cyber-divination-debug/SKILL.md: Default Output Template: added 互卦/体用/六爻审之/依卦象所缺 elements",
+    "cyber-divination-debug/SKILL.md: Length Limits: increased 150-250→200-350, 200-350→300-500, removed old material-request constraint",
+    "cyber-divination-debug/SKILL.md: All four examples updated with 互卦, 体用, 六爻审之, and 依卦象所缺 framing",
+    "cyber-divination-debug/SKILL.md: Solution Prohibition: added guardrail that expanded divination content remains symbolic framing",
+    "cyber-divination-debug/SKILL.md: Allowed Phrases: added new phrases (互卦得, 体卦为, 用卦为, 体用生克 terms, 六爻审之, 依卦象所缺)",
+    "README.md: Updated What It Does to reflect 互卦/体用 and 2-3 sentence conclusion"
+  ],
+  "tests": [
+    "grep '互卦与体用' SKILL.md: found at line 100, section exists with 体用生克 mentioned 6 times",
+    "grep 'two to three sentences' SKILL.md: found at line 123, confirmed rule change",
+    "grep 'must not exceed the length of the short conclusion' SKILL.md: 0 matches, old constraint fully removed",
+    "grep '互卦得' SKILL.md: 6 occurrences (1 template + 1 reference + 4 examples), all examples enriched",
+    "grep '体卦为' SKILL.md: 5 occurrences (1 template + 4 examples), 体用 present throughout",
+    "grep '六爻审之' SKILL.md: 6 occurrences (1 template + 1 allowed phrase + 4 examples)",
+    "grep '依卦象所缺，请补' SKILL.md: 6 occurrences (1 template + 1 allowed phrase + 4 examples)",
+    "grep 'GitHub-bot style: 200–350' SKILL.md: confirmed new limit at line 219",
+    "grep 'Normal short comment: 300–500' SKILL.md: confirmed new limit at line 220",
+    "grep 'expanded divination content' SKILL.md: confirmed Solution Prohibition guardrail at line 240",
+    "Forbidden phrases check: only found in Forbidden Phrases listing section (as prohibited items), zero introduced in new content",
+    "git diff: verified all changes are additive/enhancing with no unintended modifications"
+  ],
+  "deviations": [
+    "Incorporated 体用 example frames into existing bullet point guidance rather than adding separate bullet points (cleaner, avoids duplication)",
+    "Minor wording: used 'the prescription concluding the reading' instead of analyst's 'the prescription' for clarity",
+    "Updated Allowed Phrases and README.md for consistency (analyst plan focused on SKILL.md only — these were necessary follow-ons)"
+  ],
+  "remaining_concerns": [
+    "No executable test suite exists to validate skill output quality — verification relies on manual review of prompt engineering",
+    "AI model behavior with 互卦/体用 concepts is untested — model may misinterpret or over-elaborate these concepts (risk noted by analyst)",
+    "Simulation validation step from analyst plan (mental-model output check) requires an AI runtime not available in this environment"
+  ]
+}
